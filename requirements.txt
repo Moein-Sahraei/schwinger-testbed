@@ -1,0 +1,6 @@
+numpy==2.4.6
+scipy==1.17.1
+qiskit==2.5.1
+rustworkx==0.18.1
+matplotlib==3.11.2
+pylatexenc==2.11

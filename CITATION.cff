@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the preprint below."
+title: "A Validated Three-Reference Quantum-Circuit Testbed for the Lattice Schwinger Model"
+type: software
+authors:
+  - family-names: Sahraei
+    given-names: Moein
+    affiliation: "Department of Physics, Razi University, Kermanshah, Iran"
+    orcid: "https://orcid.org/0009-0008-8672-3934"
+license: MIT
+repository-code: "https://github.com/Moein-Sahraei/schwinger-testbed"
+keywords:
+  - lattice Schwinger model
+  - Trotter error
+  - quantum simulation
+  - lattice gauge theory
+  - Qiskit
+preferred-citation:
+  type: article
+  title: "A Validated Three-Reference Quantum-Circuit Testbed for the Lattice Schwinger Model"
+  authors:
+    - family-names: Sahraei
+      given-names: Moein
+      affiliation: "Department of Physics, Razi University, Kermanshah, Iran"
+      orcid: "https://orcid.org/0009-0008-8672-3934"
+  doi: "10.5281/zenodo.21854391"
+  publisher:
+    name: Zenodo
+  year: 2026
