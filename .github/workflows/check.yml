@@ -1,0 +1,36 @@
+name: check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Reproduce the preprint (quick run)
+        env:
+          MPLBACKEND: Agg
+        run: python code/run_all.py --quick
+
+      - name: Upload regenerated results and figures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-and-figures
+          path: |
+            results/
+            figures/
