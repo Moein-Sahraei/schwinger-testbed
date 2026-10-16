@@ -1,0 +1,14 @@
+{
+  "operator_norm": {
+    "exponent": 2.0000426951278887,
+    "prefactor": 0.3887725961649202
+  },
+  "state": {
+    "exponent": 2.0000277833944504,
+    "prefactor": 0.197272873251152
+  },
+  "observable_extensive": {
+    "exponent": 2.000019693765014,
+    "prefactor": 1.0939801216781546
+  }
+}
