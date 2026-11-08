@@ -1,5 +1,5 @@
 """Gate-level Qiskit circuit for one symmetric three-summand Trotter step,
-Eq. (12): e^{-i H1e dt/2} e^{-i H1o dt/2} e^{-i H2 dt} e^{-i H1o dt/2} e^{-i H1e dt/2}.
+Eq. (13): e^{-i H1e dt/2} e^{-i H1o dt/2} e^{-i H2 dt} e^{-i H1o dt/2} e^{-i H1e dt/2}.
 
 Qiskit conventions: RXX(th)=exp(-i th XX/2), RYY, RZZ likewise, RZ(th)=exp(-i th Z/2).
   exp(-i tau/(4a) (XX+YY)) = RXX(tau/(2a)) RYY(tau/(2a))

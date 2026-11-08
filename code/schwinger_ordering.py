@@ -8,7 +8,7 @@ formula.  Error = ||U^r - e^{-iHt}||_2.
   depleteGroups / equaliseGroups : on commuting sets from greedy colouring
                    (rustworkx, Degree strategy) of the anticommutation graph
   random         : 200 orderings from numpy.random.default_rng(7)
-Result 7 uses the next 40 orderings from the same generator and the
+Result 7 uses all 200 random orderings of Table 6 and the
 triangle-inequality norm of the second-order error operator of Tranter et al.,
   (1/12) sum_{b} sum_{a<=b} sum_{c<b} (1 - delta_ab/2) ||[H_a,[H_b,H_c]]||.
 """
@@ -151,15 +151,14 @@ def main(quick=False):
     c.close('depleteGroups / equaliseGroups', res['depleteGroups']['error'] / res['equaliseGroups']['error'],
             1.23, 0.005, 'Sec. 7: factor 1.23')
 
-    # Result 7: next 40 orderings from the same generator
-    more = [list(rng.permutation(mdl.n)) for _ in range(40)]
-    true_err = [mdl.error(o) for o in more]
-    op_norm = [mdl.error_operator_norm(o) for o in more]
-    rho = spearmanr(op_norm, true_err)
-    write_csv('ordering_spearman.csv', ['error_operator_norm', 'true_error'], list(zip(op_norm, true_err)))
-    c.close('Spearman rho (error-operator norm vs true error, 40 orderings)', rho.statistic, -0.081, 0.0015, 'Result 7')
-    c.close('Spearman p-value', rho.pvalue, 0.62, 0.006, 'Result 7')
-    res['spearman'] = {'rho': rho.statistic, 'p': rho.pvalue}
+    # Result 7: all 200 random orderings of Table 6
+    op_norm = [mdl.error_operator_norm(o) for o in rand]
+    rho = spearmanr(op_norm, rand_err)
+    write_csv('ordering_spearman.csv', ['error_operator_norm', 'true_error'], list(zip(op_norm, rand_err)))
+    c.close('Spearman rho (error-operator norm vs true error, 200 orderings)', rho.statistic, -0.292, 0.0005,
+            'Result 7: -0.292')
+    c.less('Spearman p-value', rho.pvalue, 1e-4, 'Result 7: p < 1e-4')
+    res['spearman'] = {'rho': rho.statistic, 'p': rho.pvalue, 'n_orderings': len(rand)}
     res['groups'] = [[mdl.labels[i] for i in g] for g in groups]
     write_json('ordering.json', res)
     return c.finish()

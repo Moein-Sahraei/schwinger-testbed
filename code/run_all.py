@@ -11,7 +11,7 @@ from _common import write_json
 
 SCRIPTS = ['schwinger_ed', 'schwinger_pauli', 'schwinger_trotter', 'schwinger_commutator',
            'schwinger_proper_gap', 'schwinger_circuit', 'schwinger_hierarchy', 'schwinger_ordering',
-           'make_figures']
+           'schwinger_mps', 'make_figures']
 
 
 def main():

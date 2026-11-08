@@ -25,7 +25,7 @@ def hop_part(N, bonds, a=1.0):
 
 
 def classical_three_summand(N, m, g, dt):
-    """Classical propagator of Eq. (12) built from dense matrices (independent of Qiskit)."""
+    """Classical propagator of Eq. (13) built from dense matrices (independent of Qiskit)."""
     Hh, Hm, He = parts(N, m, g)
     H1e = hop_part(N, [(n, n + 1) for n in range(0, N - 1, 2)])
     H1o = hop_part(N, [(n, n + 1) for n in range(1, N - 1, 2)])

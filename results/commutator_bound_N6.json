@@ -2,7 +2,12 @@
   "norm_H1_H1H2": 3.7499999999999916,
   "norm_H2_H1H2": 6.254121335371666,
   "bound_coefficient": 0.6774267779476385,
-  "ratio_mean_dt_le_1_32": 1.742864069469129,
+  "ratio_reference_point_dt_1_512_to_1_16": 1.7426925080097186,
+  "ratio_nine_points": {
+    "min": 1.5098672751842308,
+    "max": 6.836455413333683,
+    "median": 2.014105907934617
+  },
   "prefactor_extraction": [
     {
       "N": 4,

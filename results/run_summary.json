@@ -1,62 +1,68 @@
 {
   "quick": false,
-  "total_checks": 153,
+  "total_checks": 193,
   "failed": 0,
-  "runtime_seconds": 39.3,
+  "runtime_seconds": 125.7,
   "scripts": [
     {
       "script": "code/schwinger_ed.py",
       "checks": 21,
       "failed": 0,
-      "seconds": 6.6
+      "seconds": 4.4
     },
     {
       "script": "code/schwinger_pauli.py",
       "checks": 16,
       "failed": 0,
-      "seconds": 0.7
+      "seconds": 0.3
     },
     {
       "script": "code/schwinger_trotter.py",
       "checks": 6,
       "failed": 0,
-      "seconds": 0.1
+      "seconds": 0.0
     },
     {
       "script": "code/schwinger_commutator.py",
-      "checks": 13,
+      "checks": 20,
       "failed": 0,
-      "seconds": 0.8
+      "seconds": 8.0
     },
     {
       "script": "code/schwinger_proper_gap.py",
-      "checks": 41,
+      "checks": 65,
       "failed": 0,
-      "seconds": 17.2
+      "seconds": 16.0
     },
     {
       "script": "code/schwinger_circuit.py",
       "checks": 14,
       "failed": 0,
-      "seconds": 6.8
+      "seconds": 2.8
     },
     {
       "script": "code/schwinger_hierarchy.py",
       "checks": 16,
       "failed": 0,
-      "seconds": 0.3
+      "seconds": 0.0
     },
     {
       "script": "code/schwinger_ordering.py",
       "checks": 20,
       "failed": 0,
-      "seconds": 1.7
+      "seconds": 1.1
+    },
+    {
+      "script": "code/schwinger_mps.py",
+      "checks": 9,
+      "failed": 0,
+      "seconds": 90.7
     },
     {
       "script": "code/make_figures.py",
       "checks": 6,
       "failed": 0,
-      "seconds": 5.2
+      "seconds": 2.5
     }
   ]
 }

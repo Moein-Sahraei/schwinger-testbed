@@ -98,6 +98,7 @@ def fig2():
     e = rcsv('trotter_errors_N6.csv')
     b = rcsv('bound_vs_measured_N6.csv')
     gdt = rcsv('gap_vs_dt_N6.csv')
+    nine = rcsv('bound_ratio_nine_points.csv')
     t3 = rcsv('gap_factor_table3.csv')
     fits = read_json('trotter_fits_N6.json')
     fig, axs = plt.subplots(2, 3, figsize=(11, 6.2))
@@ -113,12 +114,15 @@ def fig2():
     ax.loglog(b['dt'], b['bound_eq10'], color=C2, ls='--', label='bound, Eq. (10)')
     ax.set_xlabel('dt'); ax.set_ylabel('||U2^r - e^{-iHt}||'); ax.legend(fontsize=8)
     tidy_log(ax)
-    ax.set_title(f"Bound / measured = {np.mean(b['ratio'][b['dt'] <= 1/32]):.2f}"); panel(ax, 'B')
+    bsel = (b['dt'] >= 1 / 512) & (b['dt'] <= 1 / 16)
+    ax.set_title(f"Bound / measured = {np.mean(b['ratio'][bsel]):.2f} here\n"
+                 f"({nine['ratio'].min():.1f} - {nine['ratio'].max():.1f} over nine parameter points)", fontsize=9.5)
+    panel(ax, 'B')
     ax = axs[0, 2]
-    ax.semilogx(gdt['dt'], gdt['G'], color=C1, marker='o')
+    ax.semilogx(gdt['dt'], gdt['G_measured'], color=C1, marker='o')
     ax.set_ylim(2.0, 2.3); ax.set_xlabel('dt'); ax.set_ylabel('gap factor G')
     tidy_log(ax); dt_ticks(ax, gdt['dt'])
-    ax.set_title(f"G independent of dt ({np.mean(gdt['G']):.3f})"); panel(ax, 'C')
+    ax.set_title(f"G independent of dt ({np.mean(gdt['G_measured']):.3f})"); panel(ax, 'C')
     ax = axs[1, 0]
     sel = (t3['m'] == 0.5) & (t3['g'] == 1.0)
     ax.plot(t3['N'][sel], t3['G'][sel], color=C1, marker='o')
@@ -135,7 +139,8 @@ def fig2():
     rows = [['operator norm', f"{fits['operator_norm']['exponent']:.3f}", f"{fits['operator_norm']['prefactor']:.3g}"],
             ['state', f"{fits['state']['exponent']:.3f}", f"{fits['state']['prefactor']:.3g}"],
             ['observable', f"{fits['observable_extensive']['exponent']:.3f}", f"{fits['observable_extensive']['prefactor']:.3g}"],
-            ['bound / measured', '', f"{np.mean(b['ratio'][b['dt'] <= 1/32]):.2f}x"],
+            ['bound / measured', '', f"{np.mean(b['ratio'][bsel]):.2f}x"],
+            ['  over nine points', '', f"{nine['ratio'].min():.1f} - {nine['ratio'].max():.1f}x"],
             ['G range', '', f"{t3['G'].min():.1f} - {t3['G'].max():.1f}"]]
     t = ax.table(cellText=rows, colLabels=['Quantity', 'Exponent', 'Prefactor'], loc='center', cellLoc='left',
                  colWidths=[0.5, 0.25, 0.25])
@@ -218,7 +223,8 @@ def fig5():
     ax = axs[1]
     ax.scatter(sp['error_operator_norm'], sp['true_error'] * 1e4, color=C1, s=22)
     ax.set_xlabel('error-operator norm (triangle-inequality)'); ax.set_ylabel('true error (x 1e-4)')
-    ax.set_title(f"No correlation: Spearman rho = {res['spearman']['rho']:.3f}, p = {res['spearman']['p']:.2f}"); panel(ax, 'B')
+    ax.set_title(f"Slightly backwards: Spearman rho = {res['spearman']['rho']:.3f} "
+                 f"({res['spearman']['n_orderings']} orderings, p < 1e-4)", fontsize=9.5); panel(ax, 'B')
     fig.suptitle('Figure 5. Replication of the ordering study of Tranter et al. (N = 6, t = 1, r = 32)', fontweight='bold')
     fig.tight_layout()
     fig.savefig(os.path.join(FIGURES, 'fig5_ordering_strategies.png'))
