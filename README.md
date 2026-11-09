@@ -29,7 +29,10 @@ eliminated through Gauss's law) is written as a spin chain and simulated with th
 
 References 1 and 2 are independent. References 2 and 3 share the Hamiltonian, so their agreement to machine
 precision verifies the circuit implementation, not the physics; the physics is checked against Reference 1.
-Each comparison therefore isolates a single approximation. The testbed is then used on questions from the
+Each comparison therefore isolates a single approximation. Reference 2 is used in two forms: the
+two-summand Strang step U₂ of Eq. (9) for the error and bound studies (Tables 2–3, Results 1–4), and the
+three-summand step of Eq. (13), which is the formula the circuit implements, for the hierarchy of Table 4.
+The commutator-scaling bound of Result 1 refers to U₂. The testbed is then used on questions from the
 literature:
 
 1. **Commutator-scaling bound** (Childs et al., PRX 11, 011020, 2021): the bound overestimates the measured
@@ -119,7 +122,7 @@ Default parameters: N = 6, m = 0.5, g = 1, a = 1, t = 1, initial state |1010…�
 | Percentiles among 200 random orderings | 0.5, 2.5, 11.0, 100 | 0.5, 2.5, 11.0, 100 |
 | Random-ordering span | 3.23e-4 – 1.42e-3 (×4.40) | 3.231e-4 – 1.422e-3 (×4.40) |
 | **Spearman ρ (error-operator norm vs true error), 200 orderings** | **−0.292 (p < 10⁻⁴)** | **−0.2924 (p = 2.7 × 10⁻⁵)** |
-| MPS ground-state energy vs exact, N = 4 … 12 | 10⁻¹⁴ or better | ≤ 4 × 10⁻¹⁴ |
+| MPS ground-state energy vs exact, N = 4 … 12 | within 5 × 10⁻¹⁴ | ≤ 4 × 10⁻¹⁴ |
 | MPS: N = 30 at χ = 96 | reached | E₀ = −11.363802, energy variance 3 × 10⁻¹² |
 
 ## Figures
@@ -153,6 +156,13 @@ Default parameters: N = 6, m = 0.5, g = 1, a = 1, t = 1, initial state |1010…�
   approaches this value as Δt² (`results/gap_vs_dt_N6.csv`).
 * **Single-site observable.** |Δ⟨σᶻ₀⟩| is identical to five figures for N = 6, 8, 10; the N = 4 value differs
   from them by 2×10⁻⁴ (relative), as in the preprint's table.
+* **Parameter-dependent counts.** At the default parameters m = 0.5, g = 1, a = 1 (that is, m = g²a/2) the
+  mass coefficient −m/2 and the electric-field Z coefficient +g²a/4 on site N − 3 cancel exactly, so
+  `pauli_terms` drops that term. This is why Table 5 has N − 1 R_Z gates per step and why the N = 6
+  Hamiltonian has 25 Pauli terms and 80 non-commuting pairs. At generic parameters there are N R_Z gates
+  (totals 19, 36, 57, 82, 111 for N = 4 … 12), 26 terms and 84 non-commuting pairs.
+* **Table 4.** Its "Ref 2" column uses the three-summand classical propagator of Eq. (13), built from dense
+  matrices independently of Qiskit; its observable column uses the extensive operator Σₙ(−1)ⁿσᶻₙ.
 * **Ordering study.** Magnitude ordering uses a stable sort of the term list; the lexicographic order sorts
   Pauli strings written site 0 first; commuting groups come from greedy colouring (rustworkx, *Degree*
   strategy) of the anticommutation graph. Random orderings use `numpy.random.default_rng(7)`; the same 200
@@ -190,15 +200,18 @@ If you use this code, please cite the preprint (see also `CITATION.cff`):
    395 (1975).
 3. M. C. Bañuls et al., *Simulating lattice gauge theories within quantum technologies*, Eur. Phys. J. D
    **74**, 165 (2020).
-4. L. Gao, S. Choi, A. F. Izmaylov, *Estimating Trotter approximation errors to optimize Hamiltonian
-   partitioning for lower eigenvalue errors*, arXiv:2312.13282 (2023).
+4. S. G. Mehendale, L. A. Martínez-Martínez, P. D. Kamath, A. F. Izmaylov, *Estimating Trotter approximation
+   errors to optimize Hamiltonian partitioning for lower eigenvalue errors*, Digit. Discov. **4** (2025),
+   doi:10.1039/D5DD00185D; arXiv:2312.13282.
 5. M. Heyl, P. Hauke, P. Zoller, *Quantum localization bounds Trotter errors in digital quantum simulation*,
    Sci. Adv. **5**, eaau8342 (2019).
 6. A. Tranter, P. J. Love, F. Mintert, N. Wiebe, P. V. Coveney, *Ordering of Trotterization: Impact on
    Errors in Quantum Simulation of Electronic Structure*, Entropy **21**, 1218 (2019).
-7. N. H. Nguyen et al., *Digital Quantum Simulation of the Schwinger Model and Symmetry Protection with
+7. A. F. Shaw, P. Lougovski, J. R. Stryker, N. Wiebe, *Quantum Algorithms for Simulating the Lattice
+   Schwinger Model*, Quantum **4**, 306 (2020).
+8. N. H. Nguyen et al., *Digital Quantum Simulation of the Schwinger Model and Symmetry Protection with
    Trapped Ions*, PRX Quantum **3**, 020324 (2022).
-8. J. Hauschild, F. Pollmann, *Efficient numerical simulations with Tensor Networks: Tensor Network Python
+9. J. Hauschild, F. Pollmann, *Efficient numerical simulations with Tensor Networks: Tensor Network Python
    (TeNPy)*, SciPost Phys. Lect. Notes 5 (2018).
 
 ## License
