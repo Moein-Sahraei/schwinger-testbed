@@ -3,7 +3,7 @@
 **A validated quantum-circuit testbed for the lattice Schwinger model**
 
 [![check](https://github.com/Moein-Sahraei/schwinger-testbed/actions/workflows/check.yml/badge.svg)](https://github.com/Moein-Sahraei/schwinger-testbed/actions/workflows/check.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22703884.svg)](https://doi.org/10.5281/zenodo.22703884)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24055293.svg)](https://doi.org/10.5281/zenodo.24055293)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Moein Sahraei, Department of Physics, Razi University, Kermanshah, Iran ·
@@ -11,10 +11,10 @@ ORCID [0009-0008-8672-3934](https://orcid.org/0009-0008-8672-3934)
 
 This repository contains the code for the preprint
 *A Validated Quantum-Circuit Testbed for the Lattice Schwinger Model*
-(Zenodo, 2026; [10.5281/zenodo.22703884](https://doi.org/10.5281/zenodo.22703884)).
-An earlier version of the preprint appeared as
-*A Validated Three-Reference Quantum-Circuit Testbed for the Lattice Schwinger Model*
-([10.5281/zenodo.21854391](https://doi.org/10.5281/zenodo.21854391)); this code reproduces the current version.
+(Zenodo, 2026; version of 8 November 2026: [10.5281/zenodo.24055293](https://doi.org/10.5281/zenodo.24055293)).
+Earlier versions: 11 September 2026, [10.5281/zenodo.22703884](https://doi.org/10.5281/zenodo.22703884);
+5 August 2026, *A Validated Three-Reference Quantum-Circuit Testbed for the Lattice Schwinger Model*,
+[10.5281/zenodo.21854391](https://doi.org/10.5281/zenodo.21854391). This code reproduces the current version.
 
 ## What the project does
 
@@ -177,7 +177,7 @@ If you use this code, please cite the preprint (see also `CITATION.cff`):
   title        = {A Validated Quantum-Circuit Testbed for the Lattice Schwinger Model},
   year         = {2026},
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.22703884},
+  doi          = {10.5281/zenodo.24055293},
   note         = {Department of Physics, Razi University, Kermanshah, Iran}
 }
 ```
